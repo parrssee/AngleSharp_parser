@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Редактировать данные о смартфоне";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WebApplication1.Models.Smartphone
+
+@using (Html.BeginForm("EditDB", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h2>Редактирование</h2>
+    @Html.ValidationSummary(true)
+    <fieldset>
+        @Html.HiddenFor(model => model.Id)
+        <p>
+            @Html.LabelFor(model => model.Name, "Название")
+            <br />
+            @Html.EditorFor(model => model.Name)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.Description, "Описание")
+            <br />
+            @Html.EditorFor(model => model.Description)
+
+        </p>
+        <p>
+            @if (Model.Image != null)
+            {
+                @Html.Raw("<img width=\"100\" src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.Image) + "\" />")
+            }
+            @Html.Raw("<input type=\"file\" name=\"uploadImage\" />")
+        </p>
+        <p><input type="submit" value="Отправить" /></p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

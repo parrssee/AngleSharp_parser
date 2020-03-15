@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model IEnumerable<WebApplication1.Models.Smartphone>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form action="/Home/GetData" method="post">
+
+    <div class="GetData">
+        <p>
+            <label>Ссылка на сайт</label><br />
+            <input type="text" name="linkString" />
+        </p>
+    </div>
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+</form>
+
+<form action="/Home/ViewDB" method="get">
+    <input type="submit" value="Отобразить БД" />
+</form>

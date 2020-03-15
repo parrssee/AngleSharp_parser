@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WebApplication1.Models.Smartphone
+
+@using (Html.BeginForm("Delete", "Home", FormMethod.Post))
+{
+    <h2>Удаление</h2>
+    <fieldset>
+        <dl>
+            @Html.HiddenFor(model => model.Id)
+            <dt>Название</dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>Описание</dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dd>
+                @if (Model.Image != null)
+                {
+                    @Html.Raw("<img width=\"100\" src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.Image) + "\" />")
+                }
+            </dd>
+        </dl>
+
+        <input type="submit" value="Удалить" />
+    </fieldset>
+}

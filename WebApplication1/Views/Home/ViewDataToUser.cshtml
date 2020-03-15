@@ -1,0 +1,33 @@
+﻿<Page Async="true"/>
+@{
+    ViewBag.Title = "Товары";
+}
+
+@model IEnumerable<WebApplication1.Models.Smartphone>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Товары</h3>
+<div class="smartphones"> 
+    @{
+        foreach (WebApplication1.Models.Smartphone s in Model)
+        {
+            <div class="smartphone">
+                <dl>
+                    <dt>Название:</dt>
+                    <dd>@s.Name</dd>
+                    <dt>Описание:</dt>
+                    <dd>@s.Description</dd>
+                    <dt>Внешний вид:</dt>
+                    <dd>
+                        @if (s.Image != null)
+                        {
+                            <img width="100" src="data:image/png;base64,@Convert.ToBase64String(s.Image)" align="left" />
+                        }
+                    </dd>
+                </dl>
+            </div>
+        }
+    }
+</div>

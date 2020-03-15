@@ -1,0 +1,48 @@
+﻿<Page Async="true" />
+@{
+    ViewBag.Title = "Товары";
+}
+
+@model IEnumerable<WebApplication1.Models.Smartphone>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Товары</h3>
+<form action="/Home/Create" method="get">
+    <input type="submit" value="Добавить товар" />
+</form>
+
+<div class="smartphones">
+    @{
+        foreach (WebApplication1.Models.Smartphone s in Model)
+        {
+            <div class="smartphone">
+                <dl>
+                    <dt>Название:</dt>
+                    <dd>@s.Name</dd>
+                    <dt>Описание:</dt>
+                    <dd>@s.Description</dd>
+                    <dt>Внешний вид:</dt>
+                    <dd>
+                        @if (s.Image != null)
+                        {
+                            <img width="100" src="data:image/png;base64,@Convert.ToBase64String(s.Image)" />
+                        }
+                    </dd>
+                    <br>
+                    <dd>
+                        <form action="/Home/EditDB" method="get">
+                            <input type="hidden" name="id" value="@s.Id" />
+                            <input class="input-buttons" type="submit" value="Редактировать" />
+                        </form>
+                        <form action="/Home/Delete" method="get">
+                            <input type="hidden" name="id" value="@s.Id" />
+                            <input class="input-buttons"  type="submit" value="Удалить" />
+                        </form>
+                    </dd>
+                </dl>
+            </div>
+        }
+    }
+</div>

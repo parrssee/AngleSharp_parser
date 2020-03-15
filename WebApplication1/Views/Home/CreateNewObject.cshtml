@@ -1,0 +1,24 @@
+﻿@model WebApplication1.Models.Smartphone
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Новый товар</h2>
+
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+<fieldset>
+    @Html.LabelFor(model => model.Name, "Название")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br /><br />
+    @Html.LabelFor(model => model.Description, "Описание")
+    <br />
+    @Html.EditorFor(model => model.Description)
+    <br /><br />
+    @Html.Raw("<input type=\"file\" name=\"uploadImage\" />")
+    <input type="submit" value="Добавить" />
+</fieldset>
+}
